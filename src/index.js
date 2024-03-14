@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import productsSlice from './features/productsSlice';
 
 const store = configureStore({
-  reducer: {}
-})
+  reducer: {
+    products: productsSlice,
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -4,13 +4,22 @@ import './index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import productsSlice from './features/productsSlice';
+import productsSlice, { productsFetch } from './features/productsSlice';
+import { productsApi } from './features/productApi';
 
 const store = configureStore({
   reducer: {
     products: productsSlice,
+    [productsApi.reducerPath]: productsApi.reducer,
   },
+  middleware: (getDefaultMiddleware)=> {
+   return getDefaultMiddleware().concat(productsApi.middleware)
+  }
+  
 });
+
+store.dispatch(productsFetch());
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

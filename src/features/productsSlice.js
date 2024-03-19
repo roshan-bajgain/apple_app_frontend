@@ -6,7 +6,6 @@ export const productsFetch = createAsyncThunk(
     "products/productsFetch",
     async()=>{
             const respond = await axios.get("http://127.0.0.1:3000/api/v1/menu_items");
-            // http://localhost:3000/products
             return respond?.data;
     }
 )

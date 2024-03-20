@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Cart.css'
 import { UseSelector, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ const Cart = () => {
   return (
     <div className='cart-container'>
       <h2>Shopping Cart</h2>
-      <p>Your cart is currently Empty</p>
+      {/* <p>Your cart is currently Empty</p> */}
       {cart.cartItems.length === 0 ? (
         <div className='start-shopping'>
           <Link to="/">
@@ -18,9 +19,9 @@ const Cart = () => {
           </Link>
         </div>  
       ):(<div>
-        <div className="titiles">
+        <div className="titles">
           <h3 className='product-title'>Product</h3>
-          <h3 className='price'>Price</h3>
+          <h3 className='prices'>Price</h3>
           <h3 className='Qualtity'>Qualtity</h3>
           <h3 className='total'>Total</h3>
         </div>
@@ -29,7 +30,7 @@ const Cart = () => {
             <div className='cart-item' key={cartItem.id}>
               <div className="cart-product">
               <img src={`http://localhost:3000${cartItem.image.url}`} alt={`Image of ${cartItem.name}`} />
-                <div>
+                <div className='details'>
                   <h3>{cartItem.name}</h3>
                   <button>Remove</button>
                 </div>

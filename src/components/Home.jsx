@@ -1,9 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { useGetAllProductsQuery } from '../features/productApi';
 import styles from './Home.css';
+import { addToCart } from '../features/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const {data,error,isLoading} = useGetAllProductsQuery();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleAddToCart = (product)=>{
+    dispatch(addToCart(product))
+    navigate("./Cart"); // Navigate to the Cart page
+  }
   return (
     <div className='home-container'>
       {isLoading ? <p>Loading...</p> : error? <p>An error occur...</p>:
@@ -19,7 +29,7 @@ const Home = () => {
               {/* <span>{product.description}</span> */}
               <h4 className='price'>Price: {product.price}</h4>
             </div>
-            <button className='btn'>Add to Cart</button>
+            <button className='btn' onClick={()=>handleAddToCart(product)}>Add to Cart</button>
           </div>)}
         </div>
       </>}

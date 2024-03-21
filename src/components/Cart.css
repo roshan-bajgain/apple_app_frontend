@@ -207,3 +207,17 @@
 .continue-shopping a span {
     margin-left: 0.5rem;
 }
+
+.start-shopping a {
+    color: rgb(69, 41, 41);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+.start-shopping a span {
+    margin-left: 0.5rem;
+}

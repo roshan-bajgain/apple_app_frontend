@@ -1,10 +1,16 @@
 import React from 'react'
 import styles from './Cart.css'
-import { UseSelector, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { removeFromCart } from '../features/cartSlice';
 
 const Cart = () => {
   const cart = useSelector((state)=>state.cart);
+  const dispatch = useDispatch();
+  const hanldeRemoveFromCart = (cartItem)=> {
+    dispatch(removeFromCart(cartItem));
+  };
+
   return (
     <div className='cart-container'>
       <h2>Shopping Cart</h2>
@@ -32,7 +38,7 @@ const Cart = () => {
               <img src={`http://localhost:3000${cartItem.image.url}`} alt={`Image of ${cartItem.name}`} />
                 <div className='details'>
                   <h3>{cartItem.name}</h3>
-                  <button>Remove</button>
+                  <button onClick={()=>hanldeRemoveFromCart(cartItem)}>Remove</button>
                 </div>
               </div>
               <div className="cart-product-price">

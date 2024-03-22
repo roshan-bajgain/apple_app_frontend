@@ -1,12 +1,17 @@
 import React from 'react'
 import styles from './Cart.css'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { addToCart, clearCart, decreaseCart, removeFromCart } from '../features/cartSlice';
+import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from '../features/cartSlice';
 
 const Cart = () => {
   const cart = useSelector((state)=>state.cart);
   const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getTotals());
+  },[cart, dispatch]);
+
   const hanldeRemoveFromCart = (cartItem)=> {
     dispatch(removeFromCart(cartItem));
   };
@@ -24,7 +29,6 @@ const Cart = () => {
   return (
     <div className='cart-container'>
       <h2>Shopping Cart</h2>
-      {/* <p>Your cart is currently Empty</p> */}
       {cart.cartItems.length === 0 ? (
         <div className='start-shopping'>
           <Link to="/">

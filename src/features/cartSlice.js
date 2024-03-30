@@ -5,6 +5,7 @@ const initialState = {
     cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")): [],
     cartTotalQualtity: 0,
     cartTotalAmount: 0,
+    email: localStorage.getItem("emailAddress") ? JSON.parse(localStorage.getItem("emailAddress")): ""
 };
 
 const cartSlice = createSlice({

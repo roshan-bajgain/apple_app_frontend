@@ -22,6 +22,7 @@ export default class App extends Component {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleSessions = this.handleSessions.bind(this);
   }
 
   checkLoginStatus() {
@@ -32,6 +33,7 @@ export default class App extends Component {
           loggedInStatus: "LOGGED_IN",
           user: response.data.user
         })
+        localStorage.setItem("emailAddress", JSON.stringify(this.state.user.email))
       }else if(!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN"){
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
@@ -70,6 +72,7 @@ export default class App extends Component {
       user: data.user,
       loginPage: true
     })
+    localStorage.setItem("emailAddress", JSON.stringify(this.state.user.email));
   }
 
   render() {

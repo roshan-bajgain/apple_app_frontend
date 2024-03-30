@@ -17,7 +17,8 @@ export default class App extends Component {
 
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
+      user: {},
+      loginPage: true
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -50,15 +51,24 @@ export default class App extends Component {
   handleLogout(){
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
+      user: {},
+      loginPage: true
+    });
+  }
+
+  handleSessions(newState){
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {},
+      loginPage: newState
     });
   }
 
   handleLogin(data){
     this.setState({
       loggedInStatus:"LOGGED_IN",
-      user: data.user
-
+      user: data.user,
+      loginPage: true
     })
   }
 
@@ -69,7 +79,7 @@ export default class App extends Component {
           <ToastContainer/>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home handleLogin={this.handleLogin} handleLogout={this.handleLogout} loggedInStatus={this.state.loggedInStatus} />} />
+            <Route path="/" element={<Home loginPage={this.state.loginPage} handleLogin={this.handleLogin} handleLogout={this.handleLogout} loggedInStatus={this.state.loggedInStatus} handleSessions= {this.handleSessions} />} />
             <Route path='/cart' element={<Cart loggedInStatus={this.state.loggedInStatus} />} />
             <Route path='/not-found' element={<NotFound />} />
             <Route path='*' element={<Navigate to='/not-found' />} />

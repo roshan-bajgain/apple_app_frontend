@@ -19,7 +19,7 @@ const Home = (props) => {
   }
   const handleSuccessfulAuth = (data) => { // after login it redirect to cartpage 
     props.handleLogin(data);
-    navigate('/Cart');
+    // navigate('/');
   };
 
   const handleLogoutClick = () => {
@@ -30,14 +30,32 @@ const Home = (props) => {
     });
   };
 
+  // let loginPage = false;
+  const handleSessions =  ()=> {
+    props.handleSessions(!props.loginPage);
+  }
+
   return (
     <div className='home-container'>
       {isLoading ? <p>Loading...</p> : error? <p>An error occur...</p>:
       <>
       <p>Status: {props.loggedInStatus}</p>
       <button onClick={()=>handleLogoutClick()}>Logout</button>
+      { props.loggedInStatus == "NOT_LOGGED_IN" && (<div>
+        {!props.loginPage && (
+          <div>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
+      <button onClick={()=>handleSessions()}>Login Page</button>
+      </div>
+        )}
+        {props.loginPage &&(
+          <div>
       <Login handleSuccessfulAuth={handleSuccessfulAuth}/>
+      <button onClick={()=>handleSessions()}>Signup Page</button>
+      </div>
+        )}
+      </div>)}
+      { props.loggedInStatus == "LOGGED_IN" && (<div>
         <h2>New Arrivals</h2>
         <div className='products'>
           {data?.map(product=> <div key={product.id} className='product'>
@@ -52,6 +70,8 @@ const Home = (props) => {
             <button className='btn' onClick={()=>handleAddToCart(product)}>Add to Cart</button>
           </div>)}
         </div>
+        </div>
+      )}
       </>}
     </div>
   )

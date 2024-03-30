@@ -40,19 +40,19 @@ const Home = (props) => {
     <div className='home-container'>
       {isLoading ? <p>Loading...</p> : error? <p>An error occur...</p>:
       <>
-      <p>Status: {props.loggedInStatus}</p>
-      <button onClick={()=>handleLogoutClick()}>Logout</button>
+      <p className='status'>Status: {props.loggedInStatus}</p>
+      <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button>
       { props.loggedInStatus == "NOT_LOGGED_IN" && (<div>
         {!props.loginPage && (
           <div>
       <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
-      <button onClick={()=>handleSessions()}>Login Page</button>
+      <button className='login-page' onClick={()=>handleSessions()}>Login Page</button>
       </div>
         )}
         {props.loginPage &&(
           <div>
       <Login handleSuccessfulAuth={handleSuccessfulAuth}/>
-      <button onClick={()=>handleSessions()}>Signup Page</button>
+      <button className='signup-page' onClick={()=>handleSessions()}>Signup Page</button>
       </div>
         )}
       </div>)}

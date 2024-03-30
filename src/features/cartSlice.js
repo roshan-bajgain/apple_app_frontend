@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {toast} from "react-toastify";
 
-let emailAddress= localStorage.getItem("emailAddress") ? JSON.parse(localStorage.getItem("emailAddress")): ""
+const email = localStorage.getItem("emailAddress") || "";
+
+// Retrieve cart items from local storage based on the email address
+const cartItems = localStorage.getItem(email + "_cartItems") ? JSON.parse(localStorage.getItem(email + "_cartItems")) : [];
 
 const initialState = {
-    cartItems: localStorage.getItem(`${emailAddress}+"_cartItems"`) ? JSON.parse(localStorage.getItem(`${emailAddress}+"_cartItems"`)): [],
     cartTotalQualtity: 0,
     cartTotalAmount: 0,
-    email: localStorage.getItem("emailAddress") ? JSON.parse(localStorage.getItem("emailAddress")): ""
+    email: email,
+    cartItems: cartItems,
 };
 
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers:{
+        logout(state) {
+            // Reset state to initial state
+            Object.assign(state, initialState);
+        },
         addToCart(state, action){
             const itemIndex = state.cartItems.findIndex(
                 (item)=> item.id === action.payload.id
@@ -30,14 +37,14 @@ const cartSlice = createSlice({
                     position: "bottom-left"
                 })
             }   
-            localStorage.setItem(`${state.email}+"_cartItems"`, JSON.stringify(state.cartItems))
+            localStorage.setItem(state.email+"_cartItems", JSON.stringify(state.cartItems))
         },
         removeFromCart(state, action){
             const nextCartItems = state.cartItems.filter(
                 cartItem => cartItem.id !== action.payload.id
             )
             state.cartItems = nextCartItems;
-            localStorage.setItem(`${state.email}+"_cartItems"`,JSON.stringify(state.cartItems))
+            localStorage.setItem(state.email+"_cartItems",JSON.stringify(state.cartItems))
             toast.error(`${action.payload.name} is removed from cart`,{
                 position: "bottom-left"
             })
@@ -60,14 +67,14 @@ const cartSlice = createSlice({
                     position: "bottom-left"
                 })
             }
-            localStorage.setItem(`${state.email}+"_cartItems"`,JSON.stringify(state.cartItems))
+            localStorage.setItem(state.email+"_cartItems",JSON.stringify(state.cartItems))
         },
         clearCart(state, action){
             state.cartItems = [];
             toast.error(`All the cart is cleared`,{
                 position: "bottom-left"
             })
-            localStorage.setItem(`${state.email}+"_cartItems"`, JSON.stringify(state.cartItems))
+            localStorage.setItem(state.email+"_cartItems", JSON.stringify(state.cartItems))
         },
         getTotals(state, action){
             let {total, quantity} = state.cartItems.reduce((cartTotal, cartItem)=>{
@@ -88,6 +95,6 @@ const cartSlice = createSlice({
     },
 });
 
-export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals} = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals, logout} = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
 export default cartSlice.reducer;

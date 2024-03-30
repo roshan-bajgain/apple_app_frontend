@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import styles from './Registration.css'
 
 export default class Registration extends Component{
     constructor(props){
@@ -52,7 +53,7 @@ export default class Registration extends Component{
     render(){
         return(
             <>
-            <div>
+            <div className='registeration_container'>
                 <form onSubmit={this.handleSubmit}>
                     <input type='text' name='full_name' placeholder='Name' value={this.state.full_name} onChange={this.handleChange} />
                     <input type='email' name='email' placeholder='Email' value={this.state.email} onChange={this.handleChange} required/>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useGetAllProductsQuery } from '../features/productApi';
 import styles from './Home.css';
-import { addToCart } from '../features/cartSlice';
+import { addToCart, logout } from '../features/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import Registration from './auth/Registration';
 import Login from './auth/Login';
@@ -25,6 +25,7 @@ const Home = (props) => {
   const handleLogoutClick = () => {
     axios.delete("http://localhost:3000/logout", {withCredentials: true}).then(response=>{
       props.handleLogout();
+      dispatch(logout())
     }).catch(error=>{
       console.log("logout error", error);
     });

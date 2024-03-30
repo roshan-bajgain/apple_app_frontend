@@ -8,11 +8,14 @@ import Navbar from './components/Navbar';
 import Cart from './components/Cart';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+// import { logout } from '../features/cartSlice';
 // import Registration from './components/auth/Registration';
 // import Login from './components/auth/Login';
 
 export default class App extends Component {
+  
   constructor(){
+
     super();
 
     this.state = {
@@ -33,7 +36,7 @@ export default class App extends Component {
           loggedInStatus: "LOGGED_IN",
           user: response.data.user
         })
-        localStorage.setItem("emailAddress", JSON.stringify(this.state.user.email))
+        localStorage.setItem("emailAddress", response.data.user.email);
       }else if(!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN"){
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
@@ -58,6 +61,7 @@ export default class App extends Component {
     });
   }
 
+
   handleSessions(newState){
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
@@ -72,7 +76,8 @@ export default class App extends Component {
       user: data.user,
       loginPage: true
     })
-    localStorage.setItem("emailAddress", JSON.stringify(this.state.user.email));
+    localStorage.setItem("emailAddress", data.user.email);
+    console.log(this.state.user.email)
   }
 
   render() {

@@ -30,7 +30,7 @@ const Cart = (props) => {
   return (
     <div className='cart-container'>
       <Navbar />
-      <p>Status: {props.loggedInStatus}</p>
+      <p className='status'>Status: {props.loggedInStatus}</p>
       <h2 className='shop-cart'>Shopping Cart</h2>
       {cart.cartItems.length === 0 ? (
         <div className='start-shopping'>

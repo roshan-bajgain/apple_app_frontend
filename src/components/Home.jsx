@@ -7,6 +7,7 @@ import { addToCart, logout } from '../features/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import Registration from './auth/Registration';
 import Login from './auth/Login';
+import Navbar from './Navbar';
 
 const Home = (props) => {
   const {data,error,isLoading} = useGetAllProductsQuery();
@@ -31,7 +32,6 @@ const Home = (props) => {
     });
   };
 
-  // let loginPage = false;
   const handleSessions =  ()=> {
     props.handleSessions(!props.loginPage);
   }
@@ -40,8 +40,8 @@ const Home = (props) => {
     <div className='home-container'>
       {isLoading ? <p>Loading...</p> : error? <p>An error occur...</p>:
       <>
-      <p className='status'>Status: {props.loggedInStatus}</p>
-      <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button>
+      {/* <p className='status'>Status: {props.loggedInStatus}</p>
+      <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button> */}
       { props.loggedInStatus == "NOT_LOGGED_IN" && (<div>
         {!props.loginPage && (
           <div>
@@ -57,7 +57,10 @@ const Home = (props) => {
         )}
       </div>)}
       { props.loggedInStatus == "LOGGED_IN" && (<div>
-        <h2>New Arrivals</h2>
+        <Navbar />
+        <p className='status'>Status: {props.loggedInStatus}</p>
+        <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button>
+        <h2 className='head'>New Arrivals</h2>
         <div className='products'>
           {data?.map(product=> <div key={product.id} className='product'>
             {product.image && (

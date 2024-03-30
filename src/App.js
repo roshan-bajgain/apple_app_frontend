@@ -85,7 +85,7 @@ export default class App extends Component {
       <div className="App">
         <BrowserRouter>
           <ToastContainer/>
-          <Navbar />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Home loginPage={this.state.loginPage} handleLogin={this.handleLogin} handleLogout={this.handleLogout} loggedInStatus={this.state.loggedInStatus} handleSessions= {this.handleSessions} />} />
             <Route path='/cart' element={<Cart loggedInStatus={this.state.loggedInStatus} />} />

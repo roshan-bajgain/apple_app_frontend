@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from '../features/cartSlice';
+import Navbar from './Navbar';
 
 const Cart = (props) => {
   const cart = useSelector((state)=>state.cart);
@@ -28,8 +29,9 @@ const Cart = (props) => {
   }
   return (
     <div className='cart-container'>
+      <Navbar />
       <p>Status: {props.loggedInStatus}</p>
-      <h2>Shopping Cart</h2>
+      <h2 className='shop-cart'>Shopping Cart</h2>
       {cart.cartItems.length === 0 ? (
         <div className='start-shopping'>
           <Link to="/">

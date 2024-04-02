@@ -7,7 +7,6 @@ export default class Registration extends Component{
         super(props);
 
         this.state = {
-            full_name: "",
             email: "",
             password: "",
             password_confirmation: "",
@@ -32,7 +31,6 @@ export default class Registration extends Component{
 
         axios.post("http://localhost:3000/registrations",{
             user: {
-                full_name: this.state.full_name,
                 email: this.state.email,
                 password: this.state.password,
                 password_confirmation: this.state.password_confirmation
@@ -55,7 +53,6 @@ export default class Registration extends Component{
             <>
             <div className='registeration_container'>
                 <form onSubmit={this.handleSubmit}>
-                    <input type='text' name='full_name' placeholder='Name' value={this.state.full_name} onChange={this.handleChange} />
                     <input type='email' name='email' placeholder='Email' value={this.state.email} onChange={this.handleChange} required/>
                     <input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} required />
                     <input type='password' name='password_confirmation' placeholder='Password confirmation' value={this.state.password_confirmation} onChange={this.handleChange} required />

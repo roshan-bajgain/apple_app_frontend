@@ -40,8 +40,6 @@ const Home = (props) => {
     <div className='home-container'>
       {isLoading ? <p>Loading...</p> : error? <p>An error occur...</p>:
       <>
-      {/* <p className='status'>Status: {props.loggedInStatus}</p>
-      <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button> */}
       { props.loggedInStatus == "NOT_LOGGED_IN" && (<div>
         {!props.loginPage && (
           <div>
@@ -58,7 +56,6 @@ const Home = (props) => {
       </div>)}
       { props.loggedInStatus == "LOGGED_IN" && (<div>
         <Navbar />
-        <p className='status'>Status: {props.loggedInStatus}</p>
         <button className='logout-btn' onClick={()=>handleLogoutClick()}>Logout</button>
         <h2 className='head'>New Arrivals</h2>
         <div className='products'>
@@ -68,7 +65,6 @@ const Home = (props) => {
             )}
             <h3>{product.name}</h3>
             <div className='details'>
-              {/* <span>{product.description}</span> */}
               <h4 className='price'>Price: {product.price}</h4>
             </div>
             <button className='btn' onClick={()=>handleAddToCart(product)}>Add to Cart</button>

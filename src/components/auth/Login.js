@@ -8,7 +8,6 @@ export default class Login extends Component{
         super(props);
 
         this.state = {
-            full_name: "",
             email: "",
             password: "",
             loginErrors: ""
@@ -53,7 +52,6 @@ export default class Login extends Component{
             <>
             <div className='login-container'>
                 <form onSubmit={this.handleSubmit}>
-                    <input type='text' name='full_name' placeholder='Name' value={this.state.full_name} onChange={this.handleChange} /><br></br>
                     <input type='email' name='email' placeholder='Email' value={this.state.email} onChange={this.handleChange} required/><br></br>
                     <input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.handleChange} required /><br></br>
                     <button type='submit'>Login</button>

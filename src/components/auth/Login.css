@@ -1,22 +1,53 @@
-* {
-    padding: 0;
+body {
     margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 .login-container {
-    text-align: center;
+    width: 350px;
+    height: 400px;
+    background: red;
+    overflow: hidden;
+    background: url("./baakground.jpg") no-repeat center / cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .login-container input {
-    width: 50%;
+    width: 60%;
+    height: 38px;
+    background: #e0dede;
+    display: flex;
+    justify-content: center;
+    margin: -16px auto;
     padding: 10px;
-    margin: 10px;
+    border: none;
+    outline: none;
     border-radius: 5px;
+    margin-top: 30px;
 }
 
 .login-container button {
-    width: 10%;
-    padding: 10px;
-    margin: 10px;
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
 }

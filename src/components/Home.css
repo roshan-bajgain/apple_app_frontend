@@ -55,25 +55,25 @@
     font-size: 20px;
 }
 
-.login-page {
+/* .login-page {
     margin-left: 275px;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     width: 10%;
-}
+} */
 
-.signup-page {
+/* .signup-page {
     margin-left: 655px;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-}
+} */
 
 .logout-btn {
     padding: 5px;
     border-radius: 5px;
 }
-.status {
+/* .status {
     padding: 5px 0;
-}
+} */

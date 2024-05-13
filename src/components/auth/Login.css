@@ -1,12 +1,3 @@
-/* body {
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-} */
-
 .login-container {
     width: 350px;
     height: 400px;
@@ -16,7 +7,7 @@
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
     position: absolute;
-    top: 50%;
+    top: -600%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -50,4 +41,26 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.signup-page {
+    position: absolute;
+    width: 100px;
+    top: 53%;
+    left: 47%;
+    padding: 7px;
+    border-radius: 4px;
+    color: #fff;
+    background: #573b8a;
+}
+
+.login-page {
+    position: absolute;
+    width: 100px;
+    top: 61%;
+    left: 47%;
+    padding: 7px;
+    border-radius: 4px;
+    color: #fff;
+    background: #573b8a;
 }
